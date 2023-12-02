@@ -43,9 +43,6 @@ const getInput = async () => {
 
 const day1 = async () => {
   const inputData = await getInput();
-  const arr = [];
-  let first, last, temp;
-
   const obj = {
     one: '1',
     two: '2',
@@ -69,19 +66,30 @@ const day1 = async () => {
   };
 
   const part1Regex = /\d/gm;
-  const part2Regex = /one|two|three|four|five|six|seven|eight|nine|0|1|2|3|4|5|6|7|8|9/gm;
+  const part2Regex = /(?=(zero|one|two|three|four|five|six|seven|eight|nine|0|1|2|3|4|5|6|7|8|9))/g;
+
+  let first,
+    last,
+    match,
+    temp = [],
+    filterMatches = [];
 
   for (let currentItem of inputData) {
-    temp = currentItem.match(part2Regex);
+    while ((match = part2Regex.exec(currentItem)) !== null) {
+      // This is necessary to avoid infinite loops with zero-width matches
+      if (match.index === part2Regex.lastIndex) {
+        part2Regex.lastIndex++;
+      }
+      temp.push(match.pop());
+    }
     first = obj[temp[0]];
     last = obj[temp[temp.length - 1]];
-    arr.push(first + last);
+    filterMatches.push(first + last);
+    temp = [];
   }
 
-  console.log(
-    'result:',
-    arr.reduce((a, c) => +a + +c)
-  );
+  const result = filterMatches.reduce((a, c) => +a + +c);
+  console.log(result);
 };
 
 day1();
