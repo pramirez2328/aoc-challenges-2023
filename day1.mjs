@@ -68,10 +68,11 @@ const day1 = async () => {
     9: '9',
   };
 
-  const regex = /one|two|three|four|five|six|seven|eight|nine|0|1|2|3|4|5|6|7|8|9/gm;
+  const part1Regex = /\d/gm;
+  const part2Regex = /one|two|three|four|five|six|seven|eight|nine|0|1|2|3|4|5|6|7|8|9/gm;
 
   for (let currentItem of inputData) {
-    temp = currentItem.match(regex);
+    temp = currentItem.match(part2Regex);
     first = obj[temp[0]];
     last = obj[temp[temp.length - 1]];
     arr.push(first + last);
