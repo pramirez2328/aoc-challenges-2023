@@ -32,21 +32,6 @@ Return inputString, with all the characters that were in parentheses reversed.
 */
 
 function solution(inputString) {
-  // let stack = [];
-  // let result = '';
-  // for (let i = 0; i < inputString.length; i++) {
-  //   if (inputString[i] === ')') {
-  //     let temp = '';
-  //     while (stack[stack.length - 1] !== '(') {
-  //       temp += stack.pop();
-  //     }
-  //     stack.pop();
-  //     stack.push(...temp);
-  //   } else {
-  //     stack.push(inputString[i]);
-  //   }
-  // }
-  // return stack.join('');
   const stack = [];
   let result = '';
 
